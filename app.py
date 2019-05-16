@@ -15,29 +15,17 @@ class MsSql:
 for fic in os.listdir('.'):
         if fnmatch.fnmatch(fic, '*.zip'):
                 ficIn = fic
-
  
-
-#cheminZip =''
-
- 
-
 ficCsv = ''
 ficZip = zipfile.ZipFile(ficIn, 'r')
-#ficZip = zipfile.ZipFile('IDFIDT.zip')
 
 for fich in ficZip.namelist():
     if 'csv' in fich:
         ficCsv = fich
         break
 
- 
-
-#ficCsv = cheminZip+'/'+fich
 ficZip.extract(ficCsv, './')
 ficZip.close()
-
- 
 
 def requete():
     cnx = pymssql.connect(MsSql().server, MsSql().user, MsSql().password, '', as_dict=True)
